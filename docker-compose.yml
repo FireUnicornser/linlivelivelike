@@ -1,0 +1,15 @@
+version: '3'
+services:
+  bililiverecorder:
+    container_name: recserver
+    image: ghcr.io/bililive/bililiverecorder:latest
+    volumes:
+      - ./rec:/rec
+    command: [ "run", "/rec" ]
+    depends_on:
+      - server
+  server:
+    container_name: colserver
+    build: './server/'
+    volumes:
+      - ./rec:/rec
